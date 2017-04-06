@@ -22,25 +22,25 @@ type alias Model c =
 makeUpdate : (Float -> c -> c) -> Time -> Model c -> Model c
 makeUpdate updateVal time model =
     let
-        -- update' is a function that really takes two arguments,
+        -- update_ is a function that really takes two arguments,
         -- but we omit them here because they're recorded for
         -- type-checking purposes in the higher-level signature
         --
-        -- update' : Time -> Model c -> Model c
+        -- update_ : Time -> Model c -> Model c
 
-        update' =
+        update_ =
             let
-                ani' =
+                ani_ =
                     case model.motion of
                         Cued fn -> fn time
                         Running ani -> ani
-                newVal = animate time ani'
+                newVal = animate time ani_
                 oldC = model.circ
                 newC = updateVal newVal oldC
             in
-                { circ = newC, motion = Running ani' }
+                { circ = newC, motion = Running ani_ }
     in
-        update'
+        update_
 
 -- Create an animation that is ready to receive the first time tick
 
@@ -53,4 +53,3 @@ isRunning motion =
     case motion of
         Running _ -> True
         Cued _ -> False
-

@@ -32,10 +32,10 @@ initialModel =
 
 update : Msg -> Model Circle -> (Model Circle, Cmd Msg)
 update (Tick time) model =
-    (update' time model, Cmd.none)
+    (update_ time model, Cmd.none)
 
-update' : Time -> Model Circle -> Model Circle
-update' =
+update_ : Time -> Model Circle -> Model Circle
+update_ =
     makeUpdate (\newX circ -> { circ | x = newX })
 
 view : Model Circle -> Svg Msg
@@ -56,4 +56,3 @@ view model =
 subscriptions : Model c -> Sub Msg
 subscriptions model =
     Time.every (30 * millisecond) Tick
-
