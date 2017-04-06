@@ -2,7 +2,7 @@ import Motion exposing (Motion, Model, makeUpdate, cue, isRunning)
 
 import Time exposing (Time, millisecond, second)
 
-import Html.App as App
+import Html
 import Svg exposing (Svg, svg, circle)
 import Svg.Attributes exposing (width, viewBox, cx, cy, r, fill)
 
@@ -17,7 +17,7 @@ type alias Circle =
 
 type Msg = Tick Time
 
-main = App.program
+main = Html.program
     { init = (initialModel, Cmd.none)
     , update = update
     , view = view
